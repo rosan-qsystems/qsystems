@@ -1,9 +1,11 @@
-import {Target} from "lucide-react";
-import {Text} from "@mantine/core";
-
-export const Logo = ()=>{
-    return      <div className="flex items-center gap-2 mb-6">
-        <div><Target/></div>
-        <Text fw={700}>Projectify</Text>
+export const Logo = () => {
+  return (
+    <div
+      className={
+        "h-[60px] flex text-center content-center justify-center items-center bg-primary-700 aspect-square rounded-md"
+      }
+    >
+      <div className="font-bold text-lg text-white">qS</div>
     </div>
-}
+  );
+};
