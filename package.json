@@ -44,6 +44,7 @@
     "@tiptap/starter-kit": "^3.3.0",
     "dayjs": "^1.11.13",
     "embla-carousel": "^8.5.2",
+    "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.5.2",
     "lucide-react": "^0.541.0",
     "react": "^19.1.1",
@@ -71,5 +72,5 @@
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.39.1",
     "vite": "^7.1.2"
-  },
+  }
 }

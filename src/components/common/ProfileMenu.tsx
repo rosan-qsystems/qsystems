@@ -1,0 +1,41 @@
+import { Avatar, Menu, Switch, Divider, Group } from "@mantine/core";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Moon, Sun } from "tabler-icons-react";
+import { logoutUser } from "../../store/modules/auth/actions";
+import { useDispatch } from "react-redux";
+
+export const ProfileMenu = () => {
+  const [darkMode, setDarkMode] = useState(false);
+  const dispatch: any = useDispatch();
+  return (
+    <Menu shadow="md">
+      <Menu.Target>
+        <Avatar ml="xs" color={"primary"} variant={"filled"} />
+      </Menu.Target>
+      <Menu.Dropdown>
+        <Menu.Item component={Link} to="/profile">
+          My Profile
+        </Menu.Item>
+        <Menu.Item component={Link} to="/settings">
+          Settings
+        </Menu.Item>
+        <div style={{ padding: "6px 12px" }}>
+          <Group justify="space-between">
+            <span>Dark mode</span>
+            <Switch
+              size="sm"
+              onLabel={<Sun size={12} />}
+              offLabel={<Moon size={12} />}
+              checked={darkMode}
+              onChange={() => setDarkMode(!darkMode)}
+              onClick={(e) => e.stopPropagation()}
+            />
+          </Group>
+        </div>
+        <Divider />
+        <Menu.Item onClick={() => dispatch(logoutUser())}>Logout</Menu.Item>
+      </Menu.Dropdown>
+    </Menu>
+  );
+};

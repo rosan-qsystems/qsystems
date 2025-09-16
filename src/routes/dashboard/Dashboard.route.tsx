@@ -9,18 +9,16 @@ export const DashLayout = () => {
     <Grid>
       <Grid.Col span={12}>
         <Routes>
-          {DASHBOARD_NAV_ITEMS.flatMap((group, groupIdx) =>
-            group.items.map((item, itemIdx) => {
-              const Component = item.component;
-              return (
-                <Route
-                  key={`${groupIdx}-${itemIdx}`}
-                  path={item.path}
-                  element={Component ? <Component /> : null}
-                />
-              );
-            }),
-          )}
+          {DASHBOARD_NAV_ITEMS.map((item, itemIdx) => {
+            const Component = item.component;
+            return (
+              <Route
+                key={itemIdx}
+                path={item.path}
+                element={Component ? <Component /> : null}
+              />
+            );
+          })}
           <Route path={"/settings/*"} element={<SettingsLayout />} />
           <Route path={"/projects/*"} element={<ProjectLayout />} />
         </Routes>

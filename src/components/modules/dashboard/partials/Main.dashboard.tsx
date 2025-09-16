@@ -5,49 +5,17 @@ import {
   Menu,
   Select,
   Stack,
-  Grid,
   Text,
   Group,
   Indicator,
   Chip,
   Alert,
 } from "@mantine/core";
-import {
-  Ellipsis,
-} from "lucide-react";
+import { Ellipsis } from "lucide-react";
 
 export const MainDashboard = () => {
   return (
     <>
-      {/* <Grid>
-        <Grid.Col span={6}>
-
-        </Grid.Col>
-        <Grid.Col span={6}>
-          <div className="flex items-center gap-2 mb-6">
-            <Text fw={700}>My Project</Text>
-          </div>
-          <Stack h={650}
-                   bg="var(--mantine-color-body)"
-                   align="stretch"
-                   justify="space-between"
-                   gap="md">
-            <Select
-                placeholder="ALL PROJECT"
-                data={['Custom Experience', 'Hajime Illustration', 'Employee Training', 'Internal Process','Market Expansion','New Product','Productivity Enhancement']}
-            />
-            <Select
-                placeholder="ON GOING"
-                data={['Custom Experience', 'Hajime Illustration', 'Employee Training', 'Internal Process','Market Expansion','New Product','Productivity Enhancement']}
-            />
-
-            <Select
-                placeholder="DONE"
-                data={['Custom Experience', 'Hajime Illustration', 'Employee Training', 'Internal Process','Market Expansion','New Product','Productivity Enhancement']}
-            />
-          </Stack>
-        </Grid.Col>
-      </Grid> */}
       <Stack
         h={320}
         bg="var(--mantine-color-body)"
@@ -55,7 +23,6 @@ export const MainDashboard = () => {
         justify="space-between"
         gap="md"
       >
-
         <Group>
           <Alert
             variant="light"

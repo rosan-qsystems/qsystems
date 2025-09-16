@@ -5,16 +5,13 @@ import {
   Menu,
   Select,
   Stack,
-  Grid,
   Text,
   Group,
   Indicator,
   Chip,
   Alert,
 } from "@mantine/core";
-import {
-  Ellipsis,
-} from "lucide-react";
+import { Ellipsis } from "lucide-react";
 
 export const DashboardPage = () => {
   return (
@@ -26,7 +23,6 @@ export const DashboardPage = () => {
         justify="space-between"
         gap="md"
       >
-
         <Group>
           <Alert
             variant="light"

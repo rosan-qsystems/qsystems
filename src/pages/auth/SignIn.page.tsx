@@ -9,7 +9,8 @@ import {
 import { useForm, type UseFormReturnType } from "@mantine/form";
 import { Link, useNavigate } from "react-router";
 import { useCallback } from "react";
-import {useAuthStore} from "../../store/modules/auth/auth.store.ts";
+import { useAuthStore } from "../../store/modules/auth/auth.store.ts";
+import { Logo } from "../../components/common/Logo.tsx";
 
 interface ILoginForm {
   username: string;
@@ -18,7 +19,7 @@ interface ILoginForm {
 
 const useSignInData = () => {
   const navigate = useNavigate();
-  const setLoginData = useAuthStore(state=>state.login);
+  const setLoginData = useAuthStore((state) => state.login);
   const form: UseFormReturnType<ILoginForm> = useForm({
     initialValues: {
       username: "admin@prod.com",
@@ -26,9 +27,9 @@ const useSignInData = () => {
     },
   });
 
-  const handleSubmit = useCallback(() =>{
-      setLoginData(form.values);
-      navigate("/dashboard");
+  const handleSubmit = useCallback(() => {
+    setLoginData(form.values);
+    navigate("/");
   }, [navigate]);
 
   return {
@@ -42,21 +43,22 @@ export const SignInPage = () => {
 
   return (
     <form
-      className="flex justify-center items-center min-h-screen bg-gray-50"
+      className="flex justify-center pt-[150px] min-h-screen"
       onSubmit={form.onSubmit(() => handleSubmit())}
     >
-      <Card shadow="md" radius="lg" padding="xl" className="w-[420px]">
-        <Card.Section inheritPadding py="md">
-          <Title
-            order={2}
-            ta="center"
-            className="text-3xl font-bold text-gray-800"
-          >
-            LOGO
-          </Title>
-        </Card.Section>
-
-        <Card.Section inheritPadding py="lg">
+      <div className={"w-8/10 space-y-xl"}>
+        <div className="flex justify-center">
+          <div className="scale-200">
+            <Logo />
+          </div>
+        </div>
+        <div>
+          <div className={"text-3xl"}>Welcome to qSystems.AI!</div>
+          <div className={"text-xl mt-xs"}>
+            Enter your credentials to login!
+          </div>
+        </div>
+        <div>
           <TextInput
             label={"Email"}
             placeholder="Enter your email"
@@ -75,29 +77,32 @@ export const SignInPage = () => {
             required
             {...form.getInputProps("password")}
           />
-          <div className={"mb-md"}>
-            <Link
-              to="/forgot-password"
-              className="text-sm text-blue-600 hover:underline"
-            >
+          <div className={"mb-md text-right mt-sm"}>
+            <Link to="/forgot-password" className="text-sm hover:underline">
               Forgot Password?
             </Link>
           </div>
 
-          <Button type="submit" color="blue" fullWidth size="md" radius="md">
-            Sign In
-          </Button>
-        </Card.Section>
+          <div className={"space-y-sm"}>
+            <Button
+              type="submit"
+              fullWidth
+              size="md"
+              radius="md"
+              color={"dark"}
+            >
+              Sign In
+            </Button>
 
-        <Card.Section inheritPadding py="sm">
-          <Text ta="center" size="sm">
-            Don’t have an account?{" "}
-            <Link to="/signup" className="text-blue-600 hover:underline">
-              Sign up
-            </Link>
-          </Text>
-        </Card.Section>
-      </Card>
+            <Button ta="center" size="sm" variant={"subtle"} fullWidth>
+              Don’t have an account?{" "}
+              <Link to="/signup" className="hover:underline">
+                Sign up
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </div>
     </form>
   );
 };
