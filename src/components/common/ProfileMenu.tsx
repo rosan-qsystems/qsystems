@@ -1,13 +1,12 @@
 import { Avatar, Menu, Switch, Divider, Group } from "@mantine/core";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { Moon, Sun } from "tabler-icons-react";
-import { logoutUser } from "../../store/modules/auth/actions";
-import { useDispatch } from "react-redux";
+import { MoonIcon, SunIcon } from "lucide-react";
+import {useNavigate} from "react-router";
 
 export const ProfileMenu = () => {
   const [darkMode, setDarkMode] = useState(false);
-  const dispatch: any = useDispatch();
+  const navigate= useNavigate();
   return (
     <Menu shadow="md">
       <Menu.Target>
@@ -25,8 +24,8 @@ export const ProfileMenu = () => {
             <span>Dark mode</span>
             <Switch
               size="sm"
-              onLabel={<Sun size={12} />}
-              offLabel={<Moon size={12} />}
+              onLabel={<SunIcon size={12} />}
+              offLabel={<MoonIcon size={12} />}
               checked={darkMode}
               onChange={() => setDarkMode(!darkMode)}
               onClick={(e) => e.stopPropagation()}
@@ -34,7 +33,7 @@ export const ProfileMenu = () => {
           </Group>
         </div>
         <Divider />
-        <Menu.Item onClick={() => dispatch(logoutUser())}>Logout</Menu.Item>
+        <Menu.Item onClick={() => navigate('/auth')}>Logout</Menu.Item>
       </Menu.Dropdown>
     </Menu>
   );

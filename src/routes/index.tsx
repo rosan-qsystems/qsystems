@@ -4,9 +4,9 @@ import { DashboardLayout } from "../layouts/dashboard/Dashboard.layout.tsx";
 import { useAuthStore } from "../store/modules/auth/auth.store.ts";
 
 export const MainRoutes = () => {
-  const isLoggedIn = useAuthStore((state) => state.isLoggedIn || !!state.token);
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn || !!state.token?.access_token);
   // const user = useSelector((state: any) => state.authReducer.user);
-  const setDefaultPath = isLoggedIn ? "/" : "/auth";
+  // const setDefaultPath = isLoggedIn ? "/" : "/auth";
   return (
     <Routes>
       <Route

@@ -15,6 +15,7 @@ export const DashLayout = () => {
               <Route
                 key={itemIdx}
                 path={item.path}
+                index={true}
                 element={Component ? <Component /> : null}
               />
             );

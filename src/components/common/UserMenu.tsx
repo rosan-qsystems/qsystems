@@ -10,14 +10,16 @@ import {useAuthStore} from "../../store/modules/auth/auth.store.ts";
 export const UserMenu = memo(() => {
 
     const user = useAuthStore(state=> state.user);
-    const username = user.firstName + ' ' + user.lastName;
+    const logout = useAuthStore(state=> state.logout);
+    const username = user?.first_name + ' ' + user?.last_name;
     const navigate = useNavigate();
     const handleMenuClick = useCallback((path:string) => {
         navigate(path);
     }, []);
 
-    const handleLogout = useCallback(() => { 
-        handleMenuClick('/')
+    const handleLogout = useCallback(() => {
+        logout();
+        handleMenuClick('/');
     }, [handleMenuClick]);
 
     return (

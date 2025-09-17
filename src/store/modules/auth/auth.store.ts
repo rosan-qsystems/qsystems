@@ -1,41 +1,39 @@
 import {create} from "zustand/react";
+import {
+    clearStorage,
+    getFullToken,
+    getUser,
+    saveFullToken,
+    saveUser
+} from "../../../utils/helper/tokenStorage.helper.ts";
+import type { AuthResponse, AuthStore } from "./auth.interface.ts";
 
-type User = {
-    firstName: string;
-    lastName: string;
-    email: string;
-};
-
-type AuthStore = {
-    user: User;
-    token: string;
-    setUser: (user: User) => void;
-    setToken: (token: string) => void;
-    login: ({username, password}: {username:string, password:string}) => void;
-    logout: () => void;
-};
 
 export const useAuthStore = create<AuthStore>((set) => ({
-    user: {
-        firstName: '',
-        lastName: '',
-        email: ''
+    user: getUser(),
+    isLoggedIn: false,
+    token: getFullToken(),
+    setUser: (user) => {
+        set({user})
+        saveUser(user);
     },
-    token: '',
-    setUser: (user) => set({user}),
-    setToken: (token) => set({token}),
-    login: ({username, password}: {username:string, password:string}) => {
-        console.log(username, password);
+    setTokenDetails: (data?:AuthResponse | null) => {
+        if(data){
+            set({
+                token:data
+            });
+            saveFullToken(data);
+        }
+    },
+    login: (data: {username:string, password:string}) => {
+        console.log(data);
+    },
+    logout: () => {
         set({
-            user: {
-                firstName: 'Admin',
-                lastName: 'Admin',
-                email: 'admin@prodline.com'
-            }, token: '123'
+            user: null,
+            isLoggedIn: false,
+            token: null
         });
-    },
-    logout: () => set({
-        user: {firstName: '', lastName: '', email: ''},
-        token: ''
-    })
+        clearStorage();
+    }
 }));

@@ -11,26 +11,43 @@ import { Link, useNavigate } from "react-router";
 import { useCallback } from "react";
 import { useAuthStore } from "../../store/modules/auth/auth.store.ts";
 import { Logo } from "../../components/common/Logo.tsx";
+import {APIGetMyData, APILogin} from "../../api/auth.ts";
+import {notify} from "../../utils/helper/notification.helper.tsx";
+import { useApi } from "../../plugins/useAPI.tsx";
 
 interface ILoginForm {
-  username: string;
-  password: string;
+  username?: string;
+  password?: string;
+  [key: string]: string | undefined;
 }
 
 const useSignInData = () => {
   const navigate = useNavigate();
-  const setLoginData = useAuthStore((state) => state.login);
+  const setTokenDetails = useAuthStore((state) => state.setTokenDetails);
+  const setUser = useAuthStore((state) => state.setUser);
+
   const form: UseFormReturnType<ILoginForm> = useForm({
     initialValues: {
-      username: "admin@prod.com",
-      password: "password",
+      username: "",
+      password: "",
     },
   });
 
-  const handleSubmit = useCallback(() => {
-    setLoginData(form.values);
-    navigate("/");
-  }, [navigate]);
+  const handleSubmit = useCallback(async () => {
+    try{
+      const formData = new FormData();
+      Object.keys(form.values).forEach((key: keyof ILoginForm) => {
+        formData.append(key, form.values[key] || "");
+      });
+      const res = await APILogin(formData);
+      setTokenDetails(res.data)
+      const res2 = await APIGetMyData();
+      setUser(res2.data);
+    }catch(e){
+      console.log(e);
+      notify.error(e.message);
+    }
+  }, [form.values, navigate]);
 
   return {
     handleSubmit,
@@ -96,7 +113,7 @@ export const SignInPage = () => {
 
             <Button ta="center" size="sm" variant={"subtle"} fullWidth>
               Don’t have an account?{" "}
-              <Link to="/signup" className="hover:underline">
+              <Link to="/auth/signup" className="hover:underline">
                 Sign up
               </Link>
             </Button>
