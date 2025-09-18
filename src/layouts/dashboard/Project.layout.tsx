@@ -1,3 +1,7 @@
+import {Routes} from "react-router";
+
 export const ProjectLayout = () => {
-  return <></>;
+  return <Routes>
+
+  </Routes>;
 };
