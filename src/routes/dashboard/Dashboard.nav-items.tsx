@@ -20,15 +20,12 @@ import { BoardPage } from "../../pages/dashboard/board/Board.page";
 import { SmartScanPage } from "../../pages/dashboard/smart-scan/SmartScan.page.tsx";
 import { JiraPage } from "../../pages/dashboard/jira/Jira.page.tsx";
 
-export type DashboardNavType = {
-  group: string;
-  items: NavItemType[];
-};
-
 export type NavItemType = {
   label: string;
-  icon: ReactElement;
+  icon?: ReactElement;
   path: string;
+  type: "DEFAULT" | 'DROPDOWN',
+  items?: any;
 };
 
 export const NAV_ITEMS: NavItemType[] = [
@@ -60,55 +57,46 @@ export const DASHBOARD_NAV_ITEMS: NavItemType[] = [
     label: "Dashboard",
     icon: <LayoutDashboard />,
     component: DashboardPage,
-    path: "/",
   },
   {
     label: "Project",
     icon: <FolderKanban />,
     component: ProjectPage,
-    path: "/project",
   },
   {
     label: "Epic",
     icon: <NotepadText />,
     component: EpicPage,
-    path: "/epic",
   },
   {
     label: "Board",
     icon: <SquareDashedKanban />,
     component: BoardPage,
-    path: "/board",
   },
   {
     label: "Timeline",
     icon: <SquareChartGantt />,
     component: DashboardPage,
-    path: "/dashboard",
   },
   {
     label: "My Tasks",
     icon: <ClipboardList />,
     component: DashboardPage,
-    path: "/dashboard",
   },
   {
     label: "Report",
     icon: <Columns4 />,
     component: DashboardPage,
-    path: "/dashboard",
   },
   {
     label: "User",
     icon: <User />,
     component: DashboardPage,
-    path: "/dashboard",
   },
   {
     label: "Chat",
     icon: <MessageCircleCode />,
     component: DashboardPage,
-    path: "/dashboard",
   },
   {
     label: "Notifications",

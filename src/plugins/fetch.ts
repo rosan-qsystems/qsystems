@@ -5,7 +5,6 @@ import {getToken} from "../utils/helper/tokenStorage.helper.ts";
 export const fetchWithConfig = async (url: string, options: any = {}) => {
   const { body, contentType = "application/json", ...otherOptions } = options;
 
-  console.log(BASE_URL);
   const isFormData = body instanceof FormData;
 
   const headers: any = {
