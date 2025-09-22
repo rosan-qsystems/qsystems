@@ -95,7 +95,7 @@ export const SignInPage = () => {
             {...form.getInputProps("password")}
           />
           <div className={"mb-md text-right mt-sm"}>
-            <Link to="/forgot-password" className="text-sm hover:underline">
+            <Link to="/auth/forgot-password" className="text-sm hover:underline">
               Forgot Password?
             </Link>
           </div>
