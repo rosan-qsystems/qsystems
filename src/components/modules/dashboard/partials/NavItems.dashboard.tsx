@@ -1,4 +1,4 @@
-import { Menu, Button } from "@mantine/core";
+import {Menu, Button, Card} from "@mantine/core";
 import { NavLink } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
@@ -49,7 +49,7 @@ export const NavItemsDashboard = () => {
         to={item.path}
         variant="subtle"
         color={"dark"}
-        className={"active"}
+        className={"dashboard-nav-item"}
       >
         {item.label}
       </Button>
@@ -57,8 +57,10 @@ export const NavItemsDashboard = () => {
   };
 
   return (
-    <div className="flex items-center gap-2 rounded-md p-[2px] bg-gray-100">
-      {NAV_ITEMS.map(renderNavItem)}
-    </div>
+    <Card className="flex items-center gap-2 rounded-md p-[2px] bg-white" py={3} px={3} withBorder>
+      <div className="flex">
+        {NAV_ITEMS.map(renderNavItem)}
+      </div>
+    </Card>
   );
 };

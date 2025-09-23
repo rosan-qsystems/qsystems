@@ -9,8 +9,8 @@ import {TasksStatus} from "../../../components/modules/dashboard/dashboard/Tasks
 export const DashboardPage = () => {
     return (
         <main>
-            <div className={'text-center mb-lg'}>
-                <div className="text-3xl font-bold">Hi, Jane Doe</div>
+            <div className={'text-center mb-lg mt-lg'}>
+                <div className="text-4xl font-bold">Hi, Jane Doe</div>
                 <div className="text-2xl">What are your plans for Today ?</div>
                 <div className="text-lg">This platform is designed to revolutionize the way you organize and access your
                     projects.
@@ -34,7 +34,7 @@ export const DashboardPage = () => {
                     </Card>
                 </Grid.Col>
                 <Grid.Col span={6}>
-                    <Card withBorder>
+                    <Card withBorder className={'h-full'}>
                         <TasksStatus/>
                     </Card>
                 </Grid.Col>

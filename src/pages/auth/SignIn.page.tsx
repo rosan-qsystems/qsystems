@@ -11,8 +11,8 @@ import { Link, useNavigate } from "react-router";
 import { useCallback } from "react";
 import { useAuthStore } from "../../store/modules/auth/auth.store.ts";
 import { Logo } from "../../components/common/Logo.tsx";
-import {APIGetMyData, APILogin} from "../../api/auth.ts";
-import {notify} from "../../utils/helper/notification.helper.tsx";
+import { APIGetMyData, APILogin } from "../../api/auth.ts";
+import { notify } from "../../utils/helper/notification.helper.tsx";
 import { useApi } from "../../plugins/useAPI.tsx";
 
 interface ILoginForm {
@@ -33,21 +33,42 @@ const useSignInData = () => {
     },
   });
 
-  const handleSubmit = useCallback(async () => {
-    try{
-      const formData = new FormData();
-      Object.keys(form.values).forEach((key: keyof ILoginForm) => {
-        formData.append(key, form.values[key] || "");
-      });
-      const res = await APILogin(formData);
-      setTokenDetails(res.data)
-      const res2 = await APIGetMyData();
-      setUser(res2.data);
-    }catch(e){
-      console.log(e);
-      notify.error(e.message);
+const handleSubmit = useCallback(async () => {
+  try {
+    const formData = new FormData();
+    Object.keys(form.values).forEach((key: keyof ILoginForm) => {
+      formData.append(key, form.values[key] || "");
+    });
+
+    const res = await APILogin(formData);
+
+    if (res.code !== "SUCCESS") {
+      notify.error(res.message || "Login failed!");
+      return;
     }
-  }, [form.values, navigate]);
+
+    // Set tokens
+    setTokenDetails(res.data);
+
+    // ONLY check is_verified if the field exists
+    if ('is_verified' in res.data && !res.data.is_verified) {
+      notify.success("Please verify your account.");
+      navigate("/auth/otp", { state: { username: form.values.username } });
+      return;
+    }
+
+    // Get user data
+    const res2 = await APIGetMyData();
+    setUser(res2.data);
+
+    notify.success("Login successful!");
+    navigate("/dashboard");
+  } catch (e: any) {
+    console.error(e);
+    notify.error(e.message || "Something went wrong during login!");
+  }
+}, [form.values, navigate]);
+
 
   return {
     handleSubmit,

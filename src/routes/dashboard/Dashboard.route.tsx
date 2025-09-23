@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router";
 import { DASHBOARD_NAV_ITEMS } from "./Dashboard.nav-items.tsx";
 import { SettingsLayout } from "../../layouts/dashboard/Settings.layout.tsx";
 import { ProjectLayout } from "../../layouts/dashboard/Project.layout.tsx";
+import {ProjectPage} from "../../pages/dashboard/project/Project.page.tsx";
 
 export const DashLayout = () => {
   return (
@@ -21,6 +22,7 @@ export const DashLayout = () => {
             );
           })}
           <Route path={"/settings/*"} element={<SettingsLayout />} />
+          <Route path={"/projects"} element={<ProjectPage />} />
           <Route path={"/projects/*"} element={<ProjectLayout />} />
         </Routes>
       </Grid.Col>

@@ -2,7 +2,7 @@ import {Avatar, Badge} from "@mantine/core";
 import {Calendar1Icon} from "lucide-react";
 
 export const DashboardTaskTile = ()=>{
-    return <div className={'p-sm bg-gray-100'}>
+    return <div className={'p-sm bg-gray-100 rounded-md'}>
         <div className={'flex'}>
             <div className="text-md flex-grow">Interact with sub tasks easily</div>
             <div><Badge color={'red'} variant={'light'}>In Progress</Badge></div>
