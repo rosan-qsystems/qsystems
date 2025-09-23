@@ -1,8 +1,9 @@
 import {SignInPage} from "../../pages/auth/SignIn.page.tsx";
 import {SignupPage} from "../../pages/auth/Signup.page.tsx";
 import {ForgotPasswordPage} from "../../pages/auth/ForgetPassword.page.tsx";
-import {ResetPasswordPage} from "../../pages/auth/ChangePassword.page.tsx";
+// import {ResetPasswordPage} from "../../pages/auth/ChangePassword.page.tsx";
 import {ResetConfirmationPage} from "../../pages/auth/ResetConfirmation.page.tsx";
+import { ResetForgetPasswordPage } from "../../pages/auth/SetForgetPassword.page.tsx";
 
 export const AuthRoutes = [
     {
@@ -22,7 +23,7 @@ export const AuthRoutes = [
     },
     {
         path: '/reset-password',
-        component: <ResetPasswordPage/>,
+        component: <ResetForgetPasswordPage/>,
         name: 'Reset Password',
     },
     {

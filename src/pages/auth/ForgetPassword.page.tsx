@@ -1,6 +1,41 @@
 import { Button, Card, Input, Title, Text } from "@mantine/core";
+import { useForm } from "@mantine/form";
+import { ForgetPassword } from "../../api/auth";
+import { useNavigate } from "react-router";
+import { notify } from "../../utils/helper/notification.helper";
+
+const useForgotPassword = () => {
+  const navigate = useNavigate();
+
+  const form = useForm({
+    initialValues: { email: "" },
+    validate: {
+      email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
+    },
+  });
+
+  const handleSubmit = async (values: typeof form.values) => {
+    try {
+      const res = await ForgetPassword(values.email);
+      console.log("API Response:", res);
+      if (res.code === "SUCCESS") {
+      notify.success(res.message);
+      navigate("/auth/reset-password", { state: { email: values.email } });
+    } else {
+      notify.error(res.message || "Something went wrong");
+    }
+  } catch (error: any) {
+    notify.error(error.message || "Failed to send reset code");
+    console.error("Forgot password failed:", error);
+  }
+};
+
+  return { form, handleSubmit };
+};
 
 export const ForgotPasswordPage = () => {
+  const { form, handleSubmit } = useForgotPassword();
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-50">
       <Card shadow="md" radius="lg" padding="xl" className="w-[420px]">
@@ -13,12 +48,12 @@ export const ForgotPasswordPage = () => {
             Forgot Password
           </Title>
           <Text ta="center" size="sm" color="dimmed" className="mt-1">
-            Enter your email to reset your password
+            Enter your email address to receive a password reset code.
           </Text>
         </Card.Section>
 
         <Card.Section inheritPadding py="lg">
-          <form className="grid gap-6">
+          <form className="grid gap-6" onSubmit={form.onSubmit(handleSubmit)}>
             <div className="flex flex-col gap-2">
               <label
                 htmlFor="email"
@@ -32,11 +67,13 @@ export const ForgotPasswordPage = () => {
                 type="email"
                 size="md"
                 radius="md"
+                required
+                {...form.getInputProps("email")}
               />
             </div>
 
             <Button type="submit" color="blue" fullWidth size="md" radius="md">
-              Send Reset Link
+              Send
             </Button>
           </form>
         </Card.Section>
