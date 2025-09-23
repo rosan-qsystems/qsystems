@@ -12,8 +12,8 @@ body {
 
 :root {
     /*--mantine-color-body: #e2e6da3b !important;*/
-    --app-shell-header-height: 80px !important;
-    --app-shell-header-offset: 80px !important;
+    --app-shell-header-height: 70px !important;
+    --app-shell-header-offset: 70px !important;
     --primary-card-background: rgba(241, 246, 223, 0.5);
 }
 
@@ -154,7 +154,9 @@ body {
 .mantine-AppShell-main {
     overflow: auto;
     max-height: 100vh;
-    background-color: rgba(0, 0, 0, 0.05);
+    background: linear-gradient(white,#f7f8fd);
+    background-attachment: fixed;
+    /*background-color: rgba(0, 0, 0, 0.02);*/
 }
 
 .m_96bdd299 mantine-Grid-col __m__-«r5» {
@@ -164,6 +166,25 @@ body {
 
 .project-nav-item{
     &.active{
-        background: rgba(0,0,0,0.12);
+        background: #ff7f1124;
+        border:1px solid rgba(255, 127, 17, 0.17);
+    }
+}
+
+
+.mantine-AppShell-header{
+    border:none!important;
+    background: rgba(255,255,255,0.3) !important;
+    backdrop-filter:  blur(40px);
+}
+
+.mantine-SegmentedControl-root{
+    background: white!important;
+}
+
+.dashboard-nav-item{
+    &.active{
+        background: #050c3c;
+        color:white;
     }
 }

@@ -7,7 +7,7 @@ export const DashboardProjectTile = () => {
         {label: 'In Progress', value: 3, color: 'red'},
         {label: 'Review', value: 3, color: 'red'},
     ]
-    return <div className={'p-sm bg-gray-100'}>
+    return <div className={'p-sm bg-gray-100 rounded-md'}>
         <div className={'flex'}>
             <div className="text-md flex-grow">Interact with sub tasks easily</div>
         </div>

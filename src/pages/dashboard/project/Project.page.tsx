@@ -44,6 +44,8 @@ export const ProjectPage = () => {
                 data={tabLabels}
                 value={activeTab}
                 onChange={setActiveTab}
+                color={'orange'}
+                size={'mdpi '}
             />
             <div className={'mt-sm'}>
                 {activeTab === 'active' && <Grid>

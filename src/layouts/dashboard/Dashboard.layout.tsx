@@ -6,8 +6,8 @@ import { DashLayout } from "../../routes/dashboard/Dashboard.route.tsx";
 export const DashboardLayout = () => {
   const [opened, { toggle }] = useDisclosure();
   return (
-    <AppShell header={{ height: 80 }} padding="md">
-      <AppShell.Header style={{ height: 60 }}>
+    <AppShell header={{ height: 70 }} padding="md">
+      <AppShell.Header style={{ height: 70 }}>
         <HeaderDashboard>
           <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
         </HeaderDashboard>

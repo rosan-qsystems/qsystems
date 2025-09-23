@@ -4,7 +4,7 @@ import {Link} from "react-router";
 export const ActiveProjects = () => {
     return <div>
         <div className="flex justify-between">
-            <div className="text-xl">Your Projects</div>
+            <div className="text-lg">Your Projects</div>
             <div>
                 <Link to={'/projects'}>View all</Link>
             </div>
